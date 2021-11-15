@@ -82,7 +82,7 @@
   <div id="selDiv" style="display: none">
     <center data-T>Your Current Side-Chain Address: //当前您的侧链地址：</center>
     <a href="" id="currAddrLink" target="_blank"><code id="currAddr"></code></a>
-    <p data-T>During this cross-chain transfer, hop.cash will charge a service fee, which is 0.1% of the transfer amount (but not less than 0.0001 BCH). //在跨链传送的过程中，hop.cash将收取服务费，数额为您所传送金额的0.1%（但不少于0.0001 BCH）。</p>
+    <p data-T>During this cross-chain transfer, hop.cash will charge a service fee, which is 0.1% of the transfer amount. Please do not deposit amounts less than 0.001 BCH, minimum fee is 0.0001 BCH. //在跨链传送的过程中，hop.cash将收取服务费，数额为您所传送金额的0.1%，请勿发送小于 0.001 BCH，最低收费为0.0001 BCH。</p>
     <p style="font-size: 8px;">&nbsp;</p>
     <input type="radio" style="height: 12px" name="SelectDir" id="hopIn"
      value="HOPIN" onclick="showHopIn()"><label for="hopIn" data-T style="font-size: 18px"
@@ -110,7 +110,7 @@
       <canvas id="legacyAddrQR"></canvas>
     </p>
     <p data-T style="color: red; font-weight: bold">Please do not sign any message containing "[Grant-Hop-Wallet]" on other website to keep you your funds safe!//请勿在其他网站上签署包含“【授权Hop钱包】”字样的消息，以确保您的资金安全！</p>
-    <p data-T>Your hop-wallet is continuously watched here, and once on-chain deposit makes its balance no less than 0.0002 BCH, these funds will be transferred to smartBCH automatically. //您的Hop钱包将在此被持续地监控，一旦链上充值使它的余额不小于0.0002 BCH，则这些资金将被自动传送至smartBCH。</p>
+    <p data-T>Your hop-wallet is continuously watched here, and once on-chain deposit makes its balance no less than 0.001 BCH, these funds will be transferred to smartBCH automatically. //您的Hop钱包将在此被持续地监控，一旦链上充值使它的余额不小于0.001 BCH，则这些资金将被自动传送至smartBCH。</p>
     <div id="inHistory">
       <center><button class="button is-primary is-light is-small" onclick="showInHistoryList()" 
 	id="inHistoryBtn" data-T>Cross-chain Transfer History (latest 20)//跨链转账历史（最近20条）</button></center>
@@ -157,13 +157,13 @@
 // The smart contract CrossChainTransfer's deployed address
 const CCTransAddress = "0x1C00b18A71802d13D93C76Be60B716099CC06C55"
 // The incoming account's address on BCH main chain
-const IncomeAddrOnBCH = "bitcoincash:qz60h0pvlr3jlqzggwwjqkvqk7xtxl6kgy3dl6eps9"
+const IncomeAddrOnBCH = "bitcoincash:qqa0dj5rwaw2s4tz88m3xmcpjyzry356gglq7zvu80"
 // The outgoing account's address on BCH main chain
-const PoolAddrOnBCH = "bitcoincash:qrvsgv8j5ed2fdfxwxk7d895uqw373j8fcmzqtcwzt"
+const PoolAddrOnBCH = "bitcoincash:qzteyuny2hdvvcd4tu6dktwx9f04jarzkyt57qel0y"
 // The incoming account's address on smartBCH side chain
-const IncomeAddrOnSmartBCH = "0x1c4DCD2153Eb0f5267CB2511D327B39800E7197b"
+const IncomeAddrOnSmartBCH = "0x3207d65b4D45CF617253467625AF6C1b687F720b"
 // The outgoing account's address on smartBCH side chain
-const PoolAddrOnSmartBCH = "0xA3f4C7404862DbAc5249b836938daD9849ab91ce"
+const PoolAddrOnSmartBCH = "0xa659c0434399a8D0e15b8286b39f8d97830F8F91"
 
 // To show the hopInDiv, we need to show PoolAddrOnSmartBCH's balance and initialize the hop-wallet
 async function showHopIn() {
@@ -262,7 +262,7 @@ async function hopInRefresh() {
 	// Check Main Chain
 	const maxAmount = await window.hopwallet.getMaxAmountToSend(2);
 	const balance = await window.hopwallet.getBalance('sat');
-	if(balance >= 20000/*0.0002BCH*/) {
+	if(balance >= 100000/*0.001BCH*/) {
 		const amt = maxAmount.sat - 400 // 400 sats margin, for getMaxAmountToSend is not accurate
 		const txData = await window.hopwallet.send([
 			OpReturnDataFromString(ccTargetAddr), //first output is just OP_RETURN
