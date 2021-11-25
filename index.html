@@ -305,7 +305,7 @@ async function hopInRefresh() {
 // show the cross-chain transfer logs in a "divId" div
 async function showCCTransLogs(divId, provider, ccTargetAddr, fromBlock) {
 	// Check Side Chain's Transfer event, because coins are send through SEP206 calls
-	const Bridged = ethers.utils.id("Bridged(bytes32, address, address, uint256)");
+	const Bridged = ethers.utils.id("Bridged(bytes32,address,address,uint256)");
 	const myAddrPad32 = ethers.utils.hexZeroPad(ccTargetAddr, 32);
 	const senderAddrPad32 = ethers.utils.hexZeroPad(PoolAddrOnSmartBCH, 32);
 	const senderAddrList = [senderAddrPad32]
