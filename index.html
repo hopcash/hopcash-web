@@ -168,7 +168,7 @@
 <center><code><a target="_blank" href="" data-T>FAQ //常见问题</a></code></center>
 <script type="text/javascript">
 // The smart contract CrossChainTransfer's deployed address
-const CCTransAddress = "0x1C00b18A71802d13D93C76Be60B716099CC06C55"
+const CCTransAddress = "0xBAe8Af26E08D3332C7163462538B82F0CBe45f2a"
 // The incoming account's address on BCH main chain
 const IncomeAddrOnBCH = "bitcoincash:qqa0dj5rwaw2s4tz88m3xmcpjyzry356gglq7zvu80"
 // The outgoing account's address on BCH main chain
@@ -305,13 +305,13 @@ async function hopInRefresh() {
 // show the cross-chain transfer logs in a "divId" div
 async function showCCTransLogs(divId, provider, ccTargetAddr, fromBlock) {
 	// Check Side Chain's Transfer event, because coins are send through SEP206 calls
-	const Transfer = ethers.utils.id("Transfer(address,address,uint256)");
+	const Bridged = ethers.utils.id("Bridged(bytes32, address, address, uint256)");
 	const myAddrPad32 = ethers.utils.hexZeroPad(ccTargetAddr, 32);
 	const senderAddrPad32 = ethers.utils.hexZeroPad(PoolAddrOnSmartBCH, 32);
 	const senderAddrList = [senderAddrPad32]
 	var tokenIdList = [];
-	const sep206Addr = "0x0000000000000000000000000000000000002711";
-	var filter = {address: sep206Addr, topics: [Transfer, senderAddrList, myAddrPad32/*receiver*/]};
+	const hopAddr = "0xBAe8Af26E08D3332C7163462538B82F0CBe45f2a";
+	var filter = {address: hopAddr, topics: [Bridged, undefined, senderAddrPad32, myAddrPad32]};
 	filter.toBlock = 10000*10000 // a very large value
 	filter.fromBlock = fromBlock;
 	var logs = await provider.getLogs(filter);
