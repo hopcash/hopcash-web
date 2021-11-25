@@ -311,7 +311,7 @@ async function showCCTransLogs(divId, provider, ccTargetAddr, fromBlock) {
 	const senderAddrList = [senderAddrPad32]
 	var tokenIdList = [];
 	const hopAddr = "0xBAe8Af26E08D3332C7163462538B82F0CBe45f2a";
-	var filter = {address: hopAddr, topics: [Bridged, undefined, senderAddrPad32, myAddrPad32]};
+	var filter = {address: hopAddr, topics: [Bridged, null, senderAddrPad32, myAddrPad32]};
 	filter.toBlock = 10000*10000 // a very large value
 	filter.fromBlock = fromBlock;
 	var logs = await provider.getLogs(filter);
