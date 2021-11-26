@@ -70,7 +70,7 @@
 
   <p style="font-size: 8px;">&nbsp;</p>
   <p style="text-align: center"><button class="button is-small" onclick="addSmartBCH()" data-T>
-   	switch to smartBCH network//切换到smartBCH链</button></p>
+   	connect to smartBCH network//切换到smartBCH链</button></p>
 
   <p style="font-size: 8px;">&nbsp;</p>
 
@@ -80,7 +80,7 @@
   <p style="font-size: 8px;">&nbsp;</p>
 
   <div id="selDiv" style="display: none">
-    <center data-T>Your Current Side-Chain Address: //当前您的侧链地址：</center>
+    <center data-T>Your Current smartBCH Address: //当前您的smartBCH侧链地址：</center>
     <a href="" id="currAddrLink" target="_blank"><code id="currAddr"></code></a>
     <p data-T>During this cross-chain transfer, hop.cash will charge a service fee, which is 0.1% of the transfer amount (but not less than 0.0001 BCH). Any amount less than 0.01 BCH will not be transferred.//在跨链传送的过程中，hop.cash将收取服务费，数额为您所传送金额的0.1%（但不少于0.0001 BCH）。充值金额小于0.01BCH时，不会进行跨链传输。</p>
     <p style="font-size: 8px;">&nbsp;</p>
@@ -122,7 +122,7 @@
 	    <span data-T>or else the cross-chain process would be stuck at 50%//否则跨链进度会卡在50%无法继续</span></td>
     </tr></table>
     <p data-T style="font-weight: bold">Please do not sign any message containing "[Grant-Hop-Wallet]" on other website to keep you your funds safe!//请勿在其他网站上签署包含“【授权Hop钱包】”字样的消息，以确保您的资金安全！</p>
-    <p data-T>Your Hop-Wallet is continuously watched here, and once on-chain deposit makes its balance no less than 0.01 BCH, these funds will be transferred to smartBCH automatically. //您的Hop钱包将在此被持续地监控，一旦链上充值使它的余额不小于0.01 BCH，则这些资金将被自动传送至smartBCH。</p>
+    <p data-T>Your Hop-Wallet is continuously watched while you keep this page open, and when the balance becomes at least 0.01 BCH, the funds will be transferred to smartBCH automatically. //只要保持此页面开启，您的Hop钱包就会持续监控，一旦余额不小于0.01 BCH，这些资金将被自动传送至smartBCH。</p>
     <div id="inHistory">
       <center><button class="button is-primary is-light is-small" onclick="showInHistoryList()" 
 	id="inHistoryBtn" data-T>Cross-chain Transfer History (latest 20)//跨链转账历史（最近20条）</button></center>
@@ -295,7 +295,7 @@ async function hopInRefresh() {
 		]);
 		const a = amt/100000000.0;
 		const b = balance/100000000.0;
-		const text = T(`[Cross-Chain 50% Finished] Find ${b} BCH in Hop-Wallet, after deducting miner fee, send ${a} BCH to cross-chain bridge with this transaction: //【跨链完成50%】发现Hop钱包中的余额为${b}，扣除矿工费之后，${a}个BCH已被发送至跨链桥，交易ID：`);
+		const text = T(`[Cross-Chain 50% Finished] Found ${b} BCH in your Hop-Wallet. After deducting miner fee, sending ${a} BCH to cross-chain bridge with this transaction: //【跨链完成50%】发现Hop钱包中的余额为${b}，扣除矿工费之后，${a}个BCH已被发送至跨链桥，交易ID：`);
 		AddToDiv("inProgress", text, makeBchTxLink(txData.txId));
 		document.getElementById("inHistory").style.display = "none"
 	}
@@ -321,7 +321,7 @@ async function showCCTransLogs(divId, provider, ccTargetAddr, fromBlock) {
 		const h = logs[i].blockNumber
 		fromBlock = h + 1;
 		const amount = ethers.utils.formatUnits(logs[i].data);
-		const text = T(`[Cross-chain 100% Finished] After deduct the cross-chain fee, ${amount} BCH were sent to your smartBCH account at height ${h}, in this transaction: //【跨链成功】扣除跨链手续费之后，${amount}个BCH被发送至您的smartBCH账户，区块高度${h}，交易ID：`);
+		const text = T(`[Cross-chain 100% Finished] After deducting the cross-chain fee, ${amount} BCH were sent to your smartBCH account at height ${h}, in this transaction: //【跨链成功】扣除跨链手续费之后，${amount}个BCH被发送至您的smartBCH账户，区块高度${h}，交易ID：`);
 		window.FinishedCrossChainOnce = true;
 		AddToDiv(divId, text, makeSmartBchTxLink(logs[i].transactionHash));
 	}
@@ -403,7 +403,7 @@ async function smartBCH_to_BCH() {
 		return;
 	}
 	if(bchaddr.isLegacyAddress(addr)) {
-		var r = confirm(T("⚠️Warning: Please make sure the recipient's address is for BCH, instead of BTC, or you'll lost the coins. Do you want to preceed with this legacy-format address?//⚠️警告：请确认接收者的地址是BCH收款地址，而非BTC收款地址，否则您将丢失您的资金！您希望继续使用此Legacy格式的地址进行跨链转账吗？"));
+		var r = confirm(T("⚠️Warning: Please make sure the recipient's address is for BCH, instead of BTC, or you'll lost the coins. Do you want to proceed with this legacy-format address?//⚠️警告：请确认接收者的地址是BCH收款地址，而非BTC收款地址，否则您将丢失您的资金！您希望继续使用此Legacy格式的地址进行跨链转账吗？"));
 		if(!r) {
 			return
 		}
