@@ -1,0 +1,94 @@
+hop.cash BCH <-> sBCH bridge FAQ
+
+Q: What does the bridge do? 
+
+A: The bridge swaps between BCH (mainchain) and smartBCH (a BCH sidechain that mimics Ethereum Virtual Machine).
+
+-- BCH to sBCH --
+
+Q: What do I do to swap from BCH to sBCH? 
+
+A: 
+
+1. Make sure you have Metamask or a similar wallet set up with smartBCH already (click "connect to smartBCH network" if it's not set up yet).
+
+2. Click "Connect to Wallet". Confirm access if your wallet asks you. 
+
+3. Click "BCH -> smartBCH". 
+
+4. The wallet will ask you to sign a message. Confirm the signature. 
+
+5. Send coins over 0.01 BCH to one of the addresses / QR codes displayed. Make sure you do not send over the "Pool Balance" amount. Using Cashaddr is encouraged.
+
+6. Wait for the bridging to complete.
+
+
+Q: How fast is the BCH -> sBCH swap? 
+
+A: For amounts less than 1 BCH, the bridge waits less than 1 minute for a doublespend proof confirmation. For amounts between 1 BCH and 50 BCH, the bridge waits for 1 confirmation. For amounts over 50 BCH, the bridge waits for 2 confirmations.
+
+
+Q: I sent a small amount but the bridge waits for confirmation anyway. What gives? 
+
+A: Some transactions do not allow for easy double-spend proofs, so the bridge cannot verify their security at 0-conf and will have to wait for confirmation. Examples include p2sh transactions and transactions with very long unconfirmed ancestor chains.
+
+
+Q: I don't see an incoming transaction in my Metamask wallet!
+
+A: You may notice that the amount increased anyway. Unfortunately Metamask does not show any transaction that doesn't come from the local wallet, and we can't do much about that. 
+
+
+Q: I accidentally closed or reloaded the page after I send the funds, but when swap is still going on. 
+
+A: You should be able to open the BCH -> sBCH page, and the transaction should continue. The transaction may automatically continue even without you reloading the page if it has already been registered, just watch your Metamask amount for update. 
+
+
+-- sBCH to BCH --
+
+
+Q: What do I do to swap from sBCH to BCH? 
+
+A: 
+
+1. Make sure you have Metamask or a similar wallet set up with smartBCH already (click "connect to smartBCH network" if it's not set up yet).
+
+2. Click "Connect to Wallet". Confirm access if your wallet asks you. 
+
+3. Click "smartBCH -> BCH". 
+
+4. The wallet will ask you to fill in destination address on mainchain BCH, as well as the amount. The destination address can be in Cashaddr or Legacy format, although Cashaddr is preferred. Please do not enter an amount under 0.01 BCH or over the Pool Balance displayed.
+
+5. Click "Cross-chain transfer". Your wallet will ask you to sign the transaction, please confirm.
+
+6. Wait for the bridging to complete.
+
+
+Q: How fast is the sBCH -> BCH swap?
+
+A: It waits for confirmation on the sBCH chain, which is usually under 10 seconds. 
+
+
+-- General --
+
+Q: The pool amount seems low and may run out soon.
+
+A: Please let the admins in @hopcash Telegram channel know if the pool amount on either side falls below 50 BCH, we'll fix that ASAP. 
+
+
+Q: There are some coins I want to blacklist at your bridge. Can you do that?
+
+A: Unfortunately we do not have a way to blacklist any coins on both sides and have no plans to attempt implementing that. 
+
+
+Q: What other swapping services are available? 
+
+A: helpme.cash maintains a list of various bridges under the "Bridges" section. 
+
+Q: What do I do if I somehow screwed up? 
+
+A: Don't panic. Record all relevant information including the transaction id from your wallet, amounts, addresses involved, exactly what you did prior to the error, and screenshots of the error if possible. Ping one of the admins in @hopcash Telegram channel. Send privacy-sensitive information, if any. We'll get back to you ASAP. 
+
+
+Q: I think I found a bug or exploit and I want to tell the operator. 
+
+A: Please DM the admins in @hopcash telegram channel. 
