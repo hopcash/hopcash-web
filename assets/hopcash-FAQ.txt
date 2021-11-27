@@ -76,7 +76,7 @@ A: It waits for confirmation on the sBCH chain, which is usually under 10 second
 
 Q: The pool amount seems low and may run out soon.
 
-A: Please let the admins in @hopcash Telegram channel know if the pool amount on either side falls below 50 BCH, we'll fix that ASAP. 
+A: The hop.cash operator regularly re-balances the pools, don't worry! If you suspect irregularities or is in urgent need to move larger amounts than the pools have, please let the admins in @hopcash Telegram channel know. 
 
 
 Q: There are some coins I want to blacklist at your bridge. Can you do that?
@@ -91,7 +91,7 @@ A: helpme.cash maintains a list of various bridges under the "Bridges" section.
 
 Q: What do I do if I somehow screwed up? 
 
-A: Don't panic. Record all relevant information including the transaction id from your wallet, amounts, addresses involved, exactly what you did prior to the error, and screenshots of the error if possible. Ping one of the admins in @hopcash Telegram channel. Send privacy-sensitive information, if any. We'll get back to you ASAP. 
+A: Don't panic. Record all relevant information including the transaction id from your wallet, amounts, addresses involved, exactly what you did prior to the error, and screenshots of the error if possible. Ping one of the admins in @hopcash Telegram channel about your problem. The @hopdotcash twitter account also periodically checks for messages, but is less frequently tended to. 
 
 
 Q: I think I found a bug or exploit and I want to tell the operator. 

@@ -107,7 +107,7 @@
 	    <td style="color: red">
 	    <span data-T>If you close this page by accident,//如果您不小心关闭了此页面，</span>
 	    <span data-T>Please DO reopen it,//请务必重新打开它，</span>
-	    <span data-T>or else the cross-chain process would be stuck at 50%//否则跨链进度会卡在50%无法继续</span></td>
+	    <span data-T>or else the cross-chain process would be stuck at first step//否则跨链进度会卡在第一步无法继续</span></td>
     </tr></table>
     <p style="font-size: 8px;">&nbsp;</p>
     <p style="text-align: center;">
@@ -119,7 +119,7 @@
 	    <td style="color: red">
 	    <span data-T>If you close this page by accident,//如果您不小心关闭了此页面，</span>
 	    <span data-T>Please DO reopen it,//请务必重新打开它，</span>
-	    <span data-T>or else the cross-chain process would be stuck at 50%//否则跨链进度会卡在50%无法继续</span></td>
+	    <span data-T>or else the cross-chain process would be stuck at first step//否则跨链进度会卡在第一步无法继续</span></td>
     </tr></table>
     <p data-T style="font-weight: bold">Please do not sign any message containing "[Grant-Hop-Wallet]" on other website to keep you your funds safe!//请勿在其他网站上签署包含“【授权Hop钱包】”字样的消息，以确保您的资金安全！</p>
     <p data-T>Your Hop-Wallet is continuously watched while you keep this page open, and when the balance becomes at least 0.01 BCH, the funds will be transferred to smartBCH automatically. //只要保持此页面开启，您的Hop钱包就会持续监控，一旦余额不小于0.01 BCH，这些资金将被自动传送至smartBCH。</p>
@@ -295,7 +295,7 @@ async function hopInRefresh() {
 		]);
 		const a = amt/100000000.0;
 		const b = balance/100000000.0;
-		const text = T(`[Cross-Chain 50% Finished] Found ${b} BCH in your Hop-Wallet. After deducting miner fee, sending ${a} BCH to cross-chain bridge with this transaction: //【跨链完成50%】发现Hop钱包中的余额为${b}，扣除矿工费之后，${a}个BCH已被发送至跨链桥，交易ID：`);
+		const text = T(`[Cross-Chain First Step] Found ${b} BCH in your Hop-Wallet. After deducting miner fee, sending ${a} BCH to cross-chain bridge with this transaction: //【跨链第一步成功】发现Hop钱包中的余额为${b}，扣除矿工费之后，${a}个BCH已被发送至跨链桥，交易ID：`);
 		AddToDiv("inProgress", text, makeBchTxLink(txData.txId));
 		document.getElementById("inHistory").style.display = "none"
 	}
@@ -321,7 +321,7 @@ async function showCCTransLogs(divId, provider, ccTargetAddr, fromBlock) {
 		const h = logs[i].blockNumber
 		fromBlock = h + 1;
 		const amount = ethers.utils.formatUnits(logs[i].data);
-		const text = T(`[Cross-chain 100% Finished, reload for another tx] After deducting the cross-chain fee, ${amount} BCH were sent to your smartBCH account at height ${h}, in this transaction: //【跨链成功，进行另一笔交易请刷新】扣除跨链手续费之后，${amount}个BCH被发送至您的smartBCH账户，区块高度${h}，交易ID：`);
+		const text = T(`[Cross-chain finished, reload for another tx] After deducting the cross-chain fee, ${amount} BCH were sent to your smartBCH account at height ${h}, in this transaction: //【跨链完成，进行另一笔交易请刷新】扣除跨链手续费之后，${amount}个BCH被发送至您的smartBCH账户，区块高度${h}，交易ID：`);
 		window.FinishedCrossChainOnce = true;
 		AddToDiv(divId, text, makeSmartBchTxLink(logs[i].transactionHash));
 	}
@@ -466,7 +466,7 @@ async function smartBCH_to_BCH() {
 	const txResp = await signer.sendTransaction(txReq);
 	const receipt = await txResp.wait();
 
-	var s = T(`[Cross-Chain 50% Finished] Your ${amount} BCH on side-chain has been sent to the cross-chain bridge in this transaction://【跨链完成50%】您的${amount}个侧链BCH已经发送至跨链桥，交易ID：`)
+	var s = T(`[Cross-Chain First Step] Your ${amount} BCH on side-chain has been sent to the cross-chain bridge in this transaction://【跨链第一步成功】您的${amount}个侧链BCH已经发送至跨链桥，交易ID：`)
 	document.getElementById("hopOutHint").innerText = s;
 
 	var fee = Math.max(amount * 0.001, 0.0001);
@@ -497,7 +497,7 @@ async function hopOutRefresh() {
 	window.lastSeenBalance = balance;
 	var diff = b-lb;
 	diff = diff.toFixed(8)*1.0;
-	const text = T(`[Cross-chain 100% Finished, reload for another tx] The main-chain recipient address's balance was increased by ${diff} BCH.//【跨链成功，进行另一笔交易请刷新】主链收款地址的余额增加了${diff}BCH。`);
+	const text = T(`[Cross-chain finished, reload for another tx] The main-chain recipient address's balance was increased by ${diff} BCH.//【跨链完成，进行另一笔交易请刷新】主链收款地址的余额增加了${diff}BCH。`);
 	var textNode = document.createTextNode(text);
 	var linkNode = document.createElement("A");
 	linkNode.href = "https://blockchair.com/bitcoin-cash/address/"+window.recipientAddr;
