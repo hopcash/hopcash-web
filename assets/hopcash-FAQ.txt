@@ -1,10 +1,13 @@
 hop.cash BCH <-> sBCH bridge FAQ
 
+
 Q: What does the bridge do? 
 
 A: The bridge swaps between BCH (mainchain) and smartBCH (a BCH sidechain that mimics Ethereum Virtual Machine).
 
+
 -- BCH to sBCH --
+
 
 Q: What do I do to swap from BCH to sBCH? 
 
@@ -70,6 +73,7 @@ A: It waits for confirmation on the sBCH chain, which is usually under 10 second
 
 -- General --
 
+
 Q: The pool amount seems low and may run out soon.
 
 A: Please let the admins in @hopcash Telegram channel know if the pool amount on either side falls below 50 BCH, we'll fix that ASAP. 
@@ -83,6 +87,7 @@ A: Unfortunately we do not have a way to blacklist any coins on both sides and h
 Q: What other swapping services are available? 
 
 A: helpme.cash maintains a list of various bridges under the "Bridges" section. 
+
 
 Q: What do I do if I somehow screwed up? 
 
