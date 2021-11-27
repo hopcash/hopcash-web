@@ -86,10 +86,10 @@
     <p style="font-size: 8px;">&nbsp;</p>
     <input type="radio" style="height: 12px" name="SelectDir" id="hopIn"
      value="HOPIN" onclick="showHopIn()"><label for="hopIn" data-T style="font-size: 18px"
-	title="BCH → smartBCH">Coins hop in smartBCH //资金进入smartBCH(主转侧)</label><br>
+	title="BCH → smartBCH">BCH -> smartBCH //资金进入smartBCH(主转侧)</label><br>
     <input type="radio" style="height: 12px" name="SelectDir" id="hopOut"
      value="HOPOUT" onclick="showHopOut()"><label for="hopOut" data-T style="font-size: 18px"
-	title="smartBCH → BCH">Coins hop out smartBCH //资金离开smartBCH(侧转主)</label><br>
+	title="smartBCH → BCH">smartBCH -> BCH //资金离开smartBCH(侧转主)</label><br>
   </div>
 
   <div id="hopInDiv" style="display: none">
@@ -137,7 +137,7 @@
   <div id="hopOutDiv" style="display: none">
     <hr/>
     <div id="hopOutForm">
-      <center><b data-T>Pool Balance on main chain://主链资金池余额：</b><span id="bchPoolBalance"></span></center>
+      <center><b data-T>Pool Balance on main chain BCH://主链资金池余额：</b><span id="bchPoolBalance"></span></center>
       <p><span data-T>Recipient Address on main chain://主链收款地址：</span><br>
       <input id="recipientAddr" class="input is-primary is-small" type="text"></p>
       <p><span data-T>Amount (BCH)://金额（BCH）：</span>
@@ -321,7 +321,7 @@ async function showCCTransLogs(divId, provider, ccTargetAddr, fromBlock) {
 		const h = logs[i].blockNumber
 		fromBlock = h + 1;
 		const amount = ethers.utils.formatUnits(logs[i].data);
-		const text = T(`[Cross-chain 100% Finished] After deducting the cross-chain fee, ${amount} BCH were sent to your smartBCH account at height ${h}, in this transaction: //【跨链成功】扣除跨链手续费之后，${amount}个BCH被发送至您的smartBCH账户，区块高度${h}，交易ID：`);
+		const text = T(`[Cross-chain 100% Finished, reload for another tx] After deducting the cross-chain fee, ${amount} BCH were sent to your smartBCH account at height ${h}, in this transaction: //【跨链成功，进行另一笔交易请刷新】扣除跨链手续费之后，${amount}个BCH被发送至您的smartBCH账户，区块高度${h}，交易ID：`);
 		window.FinishedCrossChainOnce = true;
 		AddToDiv(divId, text, makeSmartBchTxLink(logs[i].transactionHash));
 	}
@@ -497,7 +497,7 @@ async function hopOutRefresh() {
 	window.lastSeenBalance = balance;
 	var diff = b-lb;
 	diff = diff.toFixed(8)*1.0;
-	const text = T(`[Cross-chain 100% Finished] The main-chain recipient address's balance was increased by ${diff} BCH.//【跨链成功】主链收款地址的余额增加了${diff}BCH。`);
+	const text = T(`[Cross-chain 100% Finished, reload for another tx] The main-chain recipient address's balance was increased by ${diff} BCH.//【跨链成功，进行另一笔交易请刷新】主链收款地址的余额增加了${diff}BCH。`);
 	var textNode = document.createTextNode(text);
 	var linkNode = document.createElement("A");
 	linkNode.href = "https://blockchair.com/bitcoin-cash/address/"+window.recipientAddr;
