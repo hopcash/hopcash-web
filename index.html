@@ -295,7 +295,7 @@ async function hopInRefresh() {
 		]);
 		const a = amt/100000000.0;
 		const b = balance/100000000.0;
-		const text = T(`[Cross-Chain First Step] Found ${b} BCH in your Hop-Wallet. After deducting miner fee, sending ${a} BCH to cross-chain bridge with this transaction: //【跨链第一步成功】发现Hop钱包中的余额为${b}，扣除矿工费之后，${a}个BCH已被发送至跨链桥，交易ID：`);
+		const text = T(`[First Step] Found ${b} BCH in your Hop-Wallet. After miner fees, sending ${a} BCH to the bridge. Please do not refresh, or progress will be hidden. Transaction id: //【第一步成功】发现Hop钱包余额为${b}，扣除矿工费之后，${a}个BCH已被发送至跨链桥。请不要刷新，否则将无法追踪进度。交易ID：`);
 		AddToDiv("inProgress", text, makeBchTxLink(txData.txId));
 		document.getElementById("inHistory").style.display = "none"
 	}
